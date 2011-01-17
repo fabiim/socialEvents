@@ -1,8 +1,10 @@
 package socialEvents::Controller::Root;
 use Moose;
+BEGIN { extends 'Catalyst::Controller' }
+
 use namespace::autoclean;
 
-BEGIN { extends 'Catalyst::Controller' }
+
 
 #
 # Sets the actions in this controller to be registered with no prefix
@@ -26,11 +28,9 @@ The root page (/)
 
 =cut
 
-sub index :Path :Args(0) {
-    my ( $self, $c ) = @_;
 
-    # Hello World
-    $c->response->body( $c->welcome_message );
+
+sub index :Path :Args(0) {
 }
 
 =head2 default

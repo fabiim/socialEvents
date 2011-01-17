@@ -20,6 +20,10 @@ use Catalyst qw/
     -Debug
     ConfigLoader
     Static::Simple
+    Authentication 
+    Session
+    Session::State::Cookie
+    Session::Store::FastMmap
 /;
 
 extends 'Catalyst';
@@ -39,7 +43,17 @@ __PACKAGE__->config(
     name => 'socialEvents',
     # Disable deprecated behavior needed by old applications
     disable_component_resolution_regex_fallback => 1,
-);
+    'Plugin::Authentication' => { 
+	default => {
+	    credential => { class => 'Password', password_type => 'crypted'   , password_field => 'pwd'}, 
+	    store => {
+		class => 'DBIx::Class', 
+		user_model => 'socialEvents::Users', 
+		use_userdata_from_session => '1'
+	    }
+	}
+    }
+    );
 
 # Start the application
 __PACKAGE__->setup();

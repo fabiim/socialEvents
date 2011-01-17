@@ -1,0 +1,14 @@
+<!-- BEGIN site/header -->
+<h1 class="title">[% template.title or site.title %]</h1>
+<div id="navbar"> 
+[% IF c.user_exists() %]
+     <a href ="[% c.uri_for('/user/index') %]"> Perfil</a>
+     <a href ="[% c.uri_for('/events/index') %]"> Eventos</a>
+     <a href ="[% c.uri_for('/friends/index') %]"> Friends</a>
+     <a href ="[% c.uri_for('/user/logout') %]"> Logout</a>
+[% ELSE %]
+     <a href ="[% c.uri_for('/user/login') %]"> Login</a>
+[% END %]
+</div>
+
+<!-- END site/header -->

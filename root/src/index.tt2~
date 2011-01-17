@@ -1,0 +1,4 @@
+[% META title = "Bem vindo ao Diffuse! ( Not quite sure about the name )" %]
+<p>Aqui pode gerir os seus eventos sociais e provar que têm amigos e conhecer mais amigas!.</p>
+<p>Neste momento só pode fazer o login.</p>
+[ % form.render % ]
