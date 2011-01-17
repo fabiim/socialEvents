@@ -41,17 +41,28 @@ our $VERSION = '0.01';
 
 __PACKAGE__->config(
     name => 'socialEvents',
+	  'View::TT' => {
+                         INCLUDE_PATH => [
+                             __PACKAGE__->path_to('root', 'src'),
+                             __PACKAGE__->path_to('root', 'lib')
+                         ],
+                         TEMPLATE_EXTENSION => '.tt',
+                         CATALYST_VAR       => 'c',
+                         TIMER              => 0,
+                         PRE_PROCESS        => 'config/main',
+                         WRAPPER            => 'site/wrapper'
+                     },
     # Disable deprecated behavior needed by old applications
     disable_component_resolution_regex_fallback => 1,
     'Plugin::Authentication' => { 
-	default => {
-	    credential => { class => 'Password', password_type => 'crypted'   , password_field => 'pwd'}, 
-	    store => {
-		class => 'DBIx::Class', 
-		user_model => 'socialEvents::Users', 
-		use_userdata_from_session => '1'
-	    }
-	}
+        default => {
+            credential => { class => 'Password', password_type => 'clear'   , password_field => 'pwd'}, 
+            store => {
+                class => 'DBIx::Class', 
+                user_model => 'DB::User', 
+                use_userdata_from_session => '1'
+            }
+        }
     }
     );
 

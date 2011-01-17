@@ -1,8 +1,33 @@
-[% IF template.name.match('\.(css|js|txt)');
-     debug("Passing page through as text: $template.name");
-     content;
-   ELSE;
-     debug("Applying HTML page layout wrappers to $template.name\n");
-     content WRAPPER site/html + site/layout;
-   END;
--%]
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Diffuse</title>
+    <link rel="stylesheet" href="/static/css/socialEvents.css" type="text/css" media="screen" title="no title" charset="utf-8">
+</head>
+<body id="DiffuseBody">
+<div id="header">
+<h1>Diffuse</h1><img id='powered' src="/static/images/btn_88x31_built.png"/>
+    <div id="navbar">
+        [% IF c.user_exists() %] 
+	    <a href="[% c.uri_for('/user/') %]">Perfil</a>
+	    <a href="[% c.uri_for('/eventos/') %]">Eventos</a>
+	    <a href="[% c.uri_for('/locais/') %]">Locais</a>
+            <a href="[% c.uri_for('/user/friends') %]">Amigos</a>            
+	    <a href="[% c.uri_for('/user/logout') %]">Logout</a>	    
+        [% ELSE %]
+            <a href="[% c.uri_for('/user/login') %]">Login</a>
+            <a href="[% c.uri_for('/user/register') %]">Register</a>
+            <a href="[% c.uri_for('/about') %]">About</a>
+            <a href="[% c.uri_for('/contact') %]">Contact</a>
+        [% END %]
+    </div>
+</div>
+    <div id="contentarea">
+    [% IF message %]
+    <div class="messageblock">[% message %]</div>
+    [% END %]
+    [% content %]
+    </div>
+</body>

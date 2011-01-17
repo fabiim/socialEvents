@@ -28,10 +28,15 @@ The root page (/)
 
 =cut
 
-
-
 sub index :Path :Args(0) {
+#    my ($self, $c) = @_;
+#    my $users_rs =  $c->model('DB')->resultset('User'); 
+#    my $user = $users_rs->find( { usr  => 'fabiim' }, { key => 'primary' } ); 
+#    die "no such user" if (!$user) ; 
+#    $c->stash( { user => $user }); 
+#    $c->stash( template => 'index.tt' ); 
 }
+
 
 =head2 default
 
