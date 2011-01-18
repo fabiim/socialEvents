@@ -4,8 +4,13 @@ use namespace::autoclean;
 
 BEGIN {extends 'Catalyst::Controller'; }
 use socialEvents::Form::Login;
+use socialEvents::Form::Register; 
 
-has 'form' => ( isa => 'socialEvents::Form::Login' , is => 'rw' , lazy => 1 , default => sub { socialEvents::Form::Login->new }) ; 
+has 'login_form' => ( isa => 'socialEvents::Form::Login' , is => 'rw' , lazy => 1 , default => sub { socialEvents::Form::Login->new }) ; 
+
+
+has 'register_form' => ( isa => 'socialEvents::Form::Register' , is => 'rw' , lazy => 1 , default => sub { socialEvents::Form::Register->new }) ; 
+
 
 =head1 NAME
 
@@ -35,10 +40,10 @@ Catalyst Controller.
 sub login :Local :Args(0) {
     my ( $self, $c ) = @_;
     $c->stash( template => 'user/login.tt' , 
-               form => $self->form ) ; 
-    return unless $self->form->process( $ c->req->params ); 
+               form => $self->login_form ) ; 
+    return unless $self->login_form->process( $ c->req->params ); 
     
-    if ($c->authenticate( { usr => $self->form->value->{user},  pwd => $c->req->params->{'password'}  , activo => ['1']})){
+    if ($c->authenticate( { usr => $self->login_form->value->{user},  pwd => $c->req->params->{'password'}  , activo => ['1']})){
 	$c->stash->{'message'} = "You are now logged in."; 
   
 #Change the state of logged in user in database. 
@@ -67,9 +72,22 @@ sub logout :Local :Args(0) {
 }
 
 sub register:Local :Args(0){
+    my ($self , $c ) = @_; 
+    $c->stash( template => 'user/register.tt' , 
+               form => $self->register_form ) ; 
 
 
+    my $new_user = $c->model('DB::User')->new_result({}); 
+    return unless $self->register_form->process( 
+        item => $new_user, 
+        params => $c->request->parameters, 
+        schema => $c->model('DB')->schema
+        );
 
+    return if $self->register_form->is_valid; 
+
+    $c->flash->{message} = 'Registo efectuado'; 
+    $c->response->redirect( $c->uri_for('/user/login')); 
 }
 
 =head1 AUTHOR

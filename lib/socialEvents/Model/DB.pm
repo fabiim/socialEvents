@@ -10,6 +10,7 @@ __PACKAGE__->config(
         dsn => 'dbi:Oracle:sid=osiris;host=gia-oracle.di.uminho.pt;port=1521',
         user => 'a44699',
         password => 'XG1JAS',
+        on_connect_call => 'datetime_setup'
     }
 );
 

@@ -227,5 +227,18 @@ __PACKAGE__->belongs_to(
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
+__PACKAGE__->has_one(
+    "pais" => "socialEvents::Schema::Result::Pai", 
+    'codpais', 
+    ); 
+
+sub new{
+  my ($class, $args) = @_;
+  if (! (exists $args->{activo})) { $args->{activo} = '1'; }
+  if (!(exists $args->{login})   ) { $args->{login} = '0'; }
+
+  return $class->next::method($args);
+}
+
 __PACKAGE__->meta->make_immutable;
 1;
