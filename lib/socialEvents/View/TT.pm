@@ -3,7 +3,7 @@ use Moose;
 use namespace::autoclean;
 
 extends 'Catalyst::View::TT';
-
+with 'Catalyst::View::FillInForm'; 
 =head1 NAME
 
 socialEvents::View::TT - Catalyst View

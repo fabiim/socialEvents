@@ -227,10 +227,6 @@ __PACKAGE__->belongs_to(
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
-__PACKAGE__->has_one(
-    "pais" => "socialEvents::Schema::Result::Pai", 
-    'codpais', 
-    ); 
 
 sub new{
   my ($class, $args) = @_;
@@ -238,7 +234,11 @@ sub new{
   if (!(exists $args->{login})   ) { $args->{login} = '0'; }
 
   return $class->next::method($args);
-}
 
+
+}
+ # For UNIQUE (column1, column2)
+  __PACKAGE__->add_unique_constraint([ qw/usr/ ],
+  );
 __PACKAGE__->meta->make_immutable;
 1;

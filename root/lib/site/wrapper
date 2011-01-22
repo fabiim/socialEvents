@@ -11,7 +11,7 @@
 <h1>Diffuse</h1><img id='powered' src="/static/images/btn_88x31_built.png"/>
     <div id="navbar">
         [% IF c.user_exists() %] 
-	    <a href="[% c.uri_for('/user/') %]">Perfil</a>
+	    <a href="[% c.uri_for('/user/perfil') %]">Perfil</a>
 	    <a href="[% c.uri_for('/eventos/') %]">Eventos</a>
 	    <a href="[% c.uri_for('/locais/') %]">Locais</a>
             <a href="[% c.uri_for('/user/friends') %]">Amigos</a>            
@@ -27,6 +27,9 @@
     <div id="contentarea">
     [% IF message %]
     <div class="messageblock">[% message %]</div>
+    [% END %]
+    [% IF error %] 
+    <div class="messageblock">[% error %]</div>
     [% END %]
     [% content %]
     </div>

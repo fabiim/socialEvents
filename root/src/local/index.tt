@@ -1,0 +1,2 @@
+Olha para ti no index
+[% PROCESS local/list.tt %]

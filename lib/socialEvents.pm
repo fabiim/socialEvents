@@ -66,6 +66,7 @@ __PACKAGE__->config(
     }
     );
 
+__PACKAGE__->config(session => {flash_to_stash => 1});
 # Start the application
 __PACKAGE__->setup();
 

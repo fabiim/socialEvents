@@ -19,7 +19,8 @@ requires 'Config::General'; # This should reflect the config file format you've 
                  # See Catalyst::Plugin::ConfigLoader for supported formats
 requires 'HTML::FormHandler::Model::DBIC' => '0.14'; 
 requires 'Catalyst::Helper::View::TTSite' ; 
-
+requires 'DateTime::Format::Oracle'; 
+requires 'Catalyst::View::FillInForm';
 requires 'Catalyst::Plugin::Authentication'; 
 requires 'Catalyst::Authentication::Store::DBIx::Class';
 requires 'Catalyst::Plugin::Session'; 

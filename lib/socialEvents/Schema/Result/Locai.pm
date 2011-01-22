@@ -75,11 +75,11 @@ __PACKAGE__->table("locais");
   is_nullable: 0
   size: 3
 
-=head2 privpubl
+=head2 publicol
 
-  data_type: 'varchar2'
+  data_type: 'char'
   is_nullable: 0
-  size: 4
+  size: 1
 
 =head2 criadorl
 
@@ -124,8 +124,8 @@ __PACKAGE__->add_columns(
   },
   "codpais",
   { data_type => "char", is_foreign_key => 1, is_nullable => 0, size => 3 },
-  "privpubl",
-  { data_type => "varchar2", is_nullable => 0, size => 4 },
+  "publicol",
+  { data_type => "char", is_nullable => 0, size => 1 },
   "criadorl",
   { data_type => "varchar2", is_foreign_key => 1, is_nullable => 0, size => 100 },
   "m18",
@@ -161,7 +161,7 @@ Related object: L<socialEvents::Schema::Result::Tipol>
 __PACKAGE__->belongs_to(
   "codtipol",
   "socialEvents::Schema::Result::Tipol",
-  { codtipol => "codtipol" },
+  { cod => "codtipol" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -196,8 +196,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-01-16 16:24:23
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:1dOEHlllnlth9StLOUrV2A
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-01-21 22:22:13
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:plF8FakbfYwj3OuN1wVnKQ
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

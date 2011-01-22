@@ -2,7 +2,7 @@
 ;; --------------------------------------------------------------------------
 ;; Desktop File for Emacs
 ;; --------------------------------------------------------------------------
-;; Created Mon Jan 17 13:13:36 2011
+;; Created Fri Jan 21 14:08:25 2011
 ;; Desktop file format version 206
 ;; Emacs version 23.2.1
 
@@ -10,20 +10,196 @@
 (setq desktop-missing-file-warning nil)
 (setq tags-file-name "/home/fabiim/src/socialEvents/TAGS")
 (setq tags-table-list nil)
-(setq search-ring nil)
+(setq search-ring '("obj" "object" "object()" "delete_" "unique" "register" "form" "loggg"))
 (setq regexp-search-ring nil)
 (setq register-alist nil)
-(setq file-name-history '("~/src/socialEvents/lib/socialEvents.pm"))
+(setq file-name-history '("~/src/socialEvents/lib/socialEvents/Schema/Result/User.pm" "~/src/socialEvents/lib/socialEvents/View/TT.pm" "~/src/socialEvents/root/lib/site/wrapper" "~/src/socialEvents/root/src/user/perfil.tt" "~/src/socialEvents/root/src/user/login.tt" "~/src/socialEvents/lib/socialEvents/Form/Perfil.pm" "~/src/socialEvents/lib/socialEvents/Schema/Result/User.pm" "~/src/socialEvents/Makefile.PL" "~/src/socialEvents/lib/socialEvents/Controller/User.pm" "~/src/socialEvents/lib/socialEvents/Form/Register.pm" "~/src/socialEvents/lib/socialEvents/Schema/Result/Pai.pm" "~/src/socialEvents/lib/socialEvents/Schema/Result/User.pm" "~/src/socialEvents/lib/socialEvents/Model/DB.pm.new" "~/src/socialEvents/lib/socialEvents/Model/DB.pm" "~/src/socialEvents/lib/socialEvents/Schema.pm" "~/src/socialEvents/lib/socialEvents/Schema/Result/Pai.pm" "~/src/socialEvents/lib/socialEvents/Schema/Result/User.pm" "~/src/socialEvents/root/src/user/login.tt" "~/src/socialEvents/root/src/user/register.tt" "~/src/socialEvents/lib/socialEvents/Controller/User.pm" "~/src/socialEvents/lib/socialEvents/Form/Login.pm" "~/src/socialEvents/lib/socialEvents/Schema/Result/User.pm" "~/src/socialEvents/lib/socialEvents/Form/Register.pm" "~/src/socialEvents/root/src/user/index.tt" "~/src/socialEvents/root/lib/site/wrapper" "~/src/socialEvents/root/src/user/logout.tt" "~/src/socialEvents/root/src/user/logout.tt2" "~/src/socialEvents/root/src/user/login.tt" "~/src/socialEvents/lib/socialEvents/Controller/User.pm" "~/src/socialEvents/lib/socialEvents/Model/DB.pm"))
 
 ;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  "/home/fabiim/src/socialEvents/lib/socialEvents/Form/Perfil.pm"
+  "Perfil.pm"
+  'perl-mode
+  nil
+  864
+  '(835 nil)
+  nil
+  nil
+  '((tab-width . 2) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/home/fabiim/src/socialEvents/lib/socialEvents/Schema/Result/User.pm"
+  "User.pm<2>"
+  'perl-mode
+  nil
+  1951
+  '(860 nil)
+  nil
+  nil
+  '((tab-width . 2) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/fabiim/src/socialEvents/lib/socialEvents/Controller/User.pm"
+  "User.pm"
+  'perl-mode
+  nil
+  1784
+  '(2793 nil)
+  nil
+  nil
+  '((tab-width . 2) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/home/fabiim/src/socialEvents/Makefile.PL"
+  "Makefile.PL"
+  'perl-mode
+  nil
+  980
+  '(951 nil)
+  nil
+  nil
+  '((tab-width . 2) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/fabiim/src/socialEvents/root/lib/site/wrapper"
+  "wrapper"
+  'html-mode
+  nil
+  1364
+  '(1254 nil)
+  nil
+  nil
+  '((tab-width . 2) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/home/fabiim/src/socialEvents/root/src/user/perfil.tt"
+  "perfil.tt"
+  'fundamental-mode
+  nil
+  93
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/fabiim/src/socialEvents/lib/socialEvents/Form/Register.pm"
+  "Register.pm"
+  'perl-mode
+  nil
+  1514
+  '(1 nil)
+  nil
+  nil
+  '((tab-width . 2) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/home/fabiim/src/socialEvents/lib/socialEvents/Model/DB.pm"
+  "DB.pm"
+  'perl-mode
+  nil
+  360
+  '(317 nil)
+  nil
+  nil
+  '((tab-width . 2) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/fabiim/src/socialEvents/lib/socialEvents/Schema/Result/Pai.pm"
+  "Pai.pm"
+  'perl-mode
+  nil
+  948
+  '(nil nil)
+  nil
+  nil
+  '((tab-width . 2) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/fabiim/src/socialEvents/lib/socialEvents/Schema.pm"
+  "Schema.pm"
+  'perl-mode
+  nil
+  540
+  '(nil nil)
+  nil
+  nil
+  '((tab-width . 2) (buffer-file-coding-system . undecided-unix)))
+
 (desktop-create-buffer 206
   "/home/fabiim/src/socialEvents/lib/socialEvents.pm"
   "socialEvents.pm"
   'perl-mode
   nil
-  2210
+  402
+  '(2346 nil)
+  nil
+  nil
+  '((tab-width . 2) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/fabiim/src/socialEvents/lib/socialEvents/Form/Login.pm"
+  "Login.pm"
+  'perl-mode
+  nil
+  401
   '(nil nil)
   nil
   nil
   '((tab-width . 2) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/fabiim/src/socialEvents/root/src/user/register.tt"
+  "register.tt"
+  'fundamental-mode
+  nil
+  18
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/home/fabiim/src/socialEvents/lib/socialEvents/Controller/Root.pm"
+  "Root.pm"
+  'perl-mode
+  nil
+  510
+  '(484 nil)
+  nil
+  nil
+  '((tab-width . 2) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/fabiim/src/socialEvents/root/src/user/index.tt"
+  "index.tt"
+  'fundamental-mode
+  nil
+  26
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/home/fabiim/src/socialEvents/root/src/user/logout.tt"
+  "logout.tt"
+  'fundamental-mode
+  nil
+  30
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/home/fabiim/src/socialEvents/.emacs-ide.project"
+  ".emacs-ide.project"
+  'emacs-ide-config-mode
+  nil
+  736
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
 

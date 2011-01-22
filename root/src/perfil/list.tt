@@ -1,0 +1,21 @@
+<table id="locais" cellspacing="0" summary="Locais criados por [% user.usr">
+<caption>Eventos criados por sí</caption>
+  <tr>
+    [% FOR column IN eventos_criados %]
+    <th scope="col">[% column %]</th>
+    [% END %]
+    <th/>
+    [% counter = 0 %]
+  </tr>
+  [% WHILE (local = locais_criados.next) %]
+  <tr[% IF (counter % 2) == 0 %] class="alt"[% END %]>
+    [% FOR column IN locais_criados.result_source.columns %]
+    <td> [% local.$column %]</td>
+    [% END %]
+    <td>
+      <a href="[% '/local/' _ local.idlocal  %]">Ver</a>
+    </td>[% counter = counter + 1 %]
+  </tr>[% END %]
+</table>
+<p><a class="big" href="[% '/local/create' %]">+ Criar Local</a></p>
+
