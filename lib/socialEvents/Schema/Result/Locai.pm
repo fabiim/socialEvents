@@ -135,6 +135,21 @@ __PACKAGE__->set_primary_key("idlocal");
 
 =head1 RELATIONS
 
+=head2 eventoes
+
+Type: has_many
+
+Related object: L<socialEvents::Schema::Result::Evento>
+
+=cut
+
+__PACKAGE__->has_many(
+  "eventoes",
+  "socialEvents::Schema::Result::Evento",
+  { "foreign.idlocal" => "self.idlocal" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 =head2 codpai
 
 Type: belongs_to
@@ -180,24 +195,9 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 local_eventoes
 
-Type: has_many
-
-Related object: L<socialEvents::Schema::Result::LocalEvento>
-
-=cut
-
-__PACKAGE__->has_many(
-  "local_eventoes",
-  "socialEvents::Schema::Result::LocalEvento",
-  { "foreign.idlocal" => "self.idlocal" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-01-21 22:22:13
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:plF8FakbfYwj3OuN1wVnKQ
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-01-23 17:30:58
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:QJM5AUDDVmsEd44VHZ8hGw
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

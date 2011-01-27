@@ -49,11 +49,11 @@ __PACKAGE__->table("evento");
   original: {data_type => "number"}
   size: [9,2]
 
-=head2 privpube
+=head2 publico
 
-  data_type: 'varchar2'
+  data_type: 'char'
   is_nullable: 0
-  size: 4
+  size: 1
 
 =head2 duracao
 
@@ -95,6 +95,13 @@ __PACKAGE__->table("evento");
   is_nullable: 0
   size: 1
 
+=head2 idlocal
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 1
+  original: {data_type => "number",size => [38,0]}
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -116,8 +123,8 @@ __PACKAGE__->add_columns(
     original => { data_type => "number" },
     size => [9, 2],
   },
-  "privpube",
-  { data_type => "varchar2", is_nullable => 0, size => 4 },
+  "publico",
+  { data_type => "char", is_nullable => 0, size => 1 },
   "duracao",
   {
     data_type => "numeric",
@@ -145,7 +152,15 @@ __PACKAGE__->add_columns(
   { data_type => "varchar2", is_foreign_key => 1, is_nullable => 0, size => 100 },
   "m18",
   { data_type => "char", is_nullable => 0, size => 1 },
+  "idlocal",
+  {
+    data_type      => "integer",
+    is_foreign_key => 1,
+    is_nullable    => 1,
+    original       => { data_type => "number", size => [38, 0] },
+  },
 );
+
 __PACKAGE__->set_primary_key("idevento");
 
 =head1 RELATIONS
@@ -195,6 +210,26 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
+=head2 idlocal
+
+Type: belongs_to
+
+Related object: L<socialEvents::Schema::Result::Locai>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "idlocal",
+  "socialEvents::Schema::Result::Locai",
+  { idlocal => "idlocal" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
+);
+
 =head2 codtipoe
 
 Type: belongs_to
@@ -206,28 +241,13 @@ Related object: L<socialEvents::Schema::Result::Tipoe>
 __PACKAGE__->belongs_to(
   "codtipoe",
   "socialEvents::Schema::Result::Tipoe",
-  { codtipoe => "codtipoe" },
+  { cod => "codtipoe" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 local_eventoes
 
-Type: has_many
-
-Related object: L<socialEvents::Schema::Result::LocalEvento>
-
-=cut
-
-__PACKAGE__->has_many(
-  "local_eventoes",
-  "socialEvents::Schema::Result::LocalEvento",
-  { "foreign.idevento" => "self.idevento" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-01-16 16:24:23
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:cm44x4w7rRHO5CzldthndQ
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-01-23 17:30:58
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:9W16KV3VHJ6YFtAEnp+Iww
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

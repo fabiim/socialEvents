@@ -1,0 +1,20 @@
+<table id="locais" cellspacing="0" summary="Locais criados">
+<caption>Eventos criados por [% c.user.usr %]</caption>
+  <tr>
+    [% FOR column IN results.result_source.columns %]
+    <th scope="col">[% column %]</th>
+    [% END %]
+    <th scope="col"> Tipo Evento</th>
+    <th/>
+    [% counter = 0 %]
+  </tr>
+  [% WHILE  (coisa =  results.next)  %]
+<tr [% IF (counter % 2) == 0 %] class="alt"[% END %]>
+  [% FOR column IN results.result_source.columns %]
+  <td>[% coisa.$column %] </td>
+  [% END %]
+  <td>[% coisa.codtipoe.dsc %] </td> 
+  [% counter = counter + 1 %]
+</tr>[% END %]
+</table>
+

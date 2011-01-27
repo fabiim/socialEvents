@@ -29,7 +29,7 @@
     <div class="messageblock">[% message %]</div>
     [% END %]
     [% IF error %] 
-    <div class="messageblock">[% error %]</div>
+    <div class="error">[% error %]</div>
     [% END %]
     [% content %]
     </div>

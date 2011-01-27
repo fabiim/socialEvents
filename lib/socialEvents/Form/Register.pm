@@ -6,7 +6,6 @@ with 'HTML::FormHandler::Render::Table';
 
 
 has '+item_class' => ( default => 'User' );
-
 has_field 'usr' => ( 
     type => 'Text' , 
     required => 1 , 
@@ -23,7 +22,6 @@ has_field 'dn.month' => ( type => 'Month');
 has_field 'dn.day' => ( type => 'MonthDay'); 
 has_field 'pwd' => (type => 'Password'); 
 has_field 'pwd_confirm' => (type => 'PasswordConf', password_field => 'pwd' ); 
-
 has_field 'email' => ( type   => 'Email', required => 1, required_message => 'Introduza o email.');
 
 has_field 'submit' => ( type => 'Submit', value => 'Register' );

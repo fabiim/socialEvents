@@ -5,37 +5,72 @@ use namespace::autoclean;
 BEGIN {extends 'Catalyst::Controller'; }
 
 use socialEvents::Form::LocalEdit;
+use socialEvents::Form::LocalView;
 has 'edit_form' => ( isa => 'socialEvents::Form::LocalEdit' , is => 'rw' , lazy => 1 , default => sub { socialEvents::Form::LocalEdit->new }) ; 
 
-=head1 NAME
-
-socialEvents::Controller::Locais - Catalyst Controller
-
-=head1 DESCRIPTION
-
-Catalyst Controller.
-
-=head1 METHODS
-
-=cut
-
-
-=head2 index
-
-=cut
+has 'view_form' => ( isa => 'socialEvents::Form::LocalView' , is => 'rw' , lazy => 1 , default => sub { socialEvents::Form::LocalView->new }) ; 
 
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
     $c->stash( template => 'local/index.tt' ); 
     $self->do_list($c) ; 
 }
+sub view : Local : Args(1){
+    my ($self , $c, $id_local) = @_; 
+    
+    #check to see if this local exists 
+    
+    my $local = $c->model('DB::Locai')->find($id_local );  # returns just one or undef
+    if (!$local) {
+        $c->stash(error => 'Local inexistente' ); 
+        $c->response->redirect( $c->uri_for('index')); 
+        $c->detach();
+    }
+
+    my $usr = $c->user->get('usr'); 
+    my $criador= $local->criadorl->usr; 
+    $c->log->debug("Value of criador is " .  $criador);
+    $c->log->debug("valug of get usr is " . $usr);
+        
+    #check to see if we are the owner 
+    if ($usr eq $criador){
+        $c->stash(form => $self->edit_form, 
+                  template => 'local/edit.tt'); 
+
+        $self->edit_form->process( 
+        item => $local, 
+        params => $c->request->parameters, 
+        schema => $c->model('DB')->schema,
+        criador_local => $c->user->get('usr')
+        );
+
+        return if !$self->edit_form->is_valid; 
+
+        $c->flash->{message} = 'Alterações efectuadas'; 
+        $c->response->redirect( $c->uri_for('/locais/index')); 
+        $c->detach();
+#edita o local
+    }
+    else{
+       $c->stash( template => 'local/view.tt',
+                  form => $self->view_form); 
+       $self->view_form->process( 
+            item => $local, 
+            params => $c->request->parameters, 
+            schema => $c->model('DB')->schema,
+        );
+    }
+} 
 
 sub do_list
 {
    my ( $self, $c ) = @_;
-   my $locais_criados = [ $c->model('DB::Locai')->search({ criadorl => $c->user->get('usr') })];
-   $c->stash(locais_criados => $locais_criados, template => 'local/list.tt' );
+   my $locais_criados =  [$c->model('DB::Locai')->search({ criadorl => $c->user->get('usr') })->all()];
+   my @colref = ('nomel', 'cap', 'publicol', 'm18'); 
+   my @colnames = ('Nome' , 'Capacidade' , 'Tipo' , 'Maior que 18'); 
+   $c->stash(locais_criados => $locais_criados , colref => \@colref, colnames => \@colnames );
 }
+
 
 sub create: Local: Args(0){
     my ($self , $c ) = @_; 
@@ -56,17 +91,6 @@ sub create: Local: Args(0){
     $c->flash->{message} = 'Local Criado'; 
     $c->response->redirect( $c->uri_for('/locais/index')); 
 }
-
-=head1 AUTHOR
-
-fabiim,,,
-
-=head1 LICENSE
-
-This library is free software. You can redistribute it and/or modify
-it under the same terms as Perl itself.
-
-=cut
 
 __PACKAGE__->meta->make_immutable;
 

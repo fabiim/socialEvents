@@ -1,4 +1,4 @@
-package socialEvents::Schema::Result::Tipoe;
+package socialEvents::Schema::Result::Eventosporlugar;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -15,62 +15,48 @@ __PACKAGE__->load_components("InflateColumn::DateTime");
 
 =head1 NAME
 
-socialEvents::Schema::Result::Tipoe
+socialEvents::Schema::Result::Eventosporlugar
 
 =cut
 
-__PACKAGE__->table("tipoe");
+__PACKAGE__->table("eventosporlugar");
 
 =head1 ACCESSORS
 
-=head2 cod
+=head2 idlocal
+
+  data_type: 'integer'
+  is_nullable: 1
+  original: {data_type => "number",size => [38,0]}
+
+=head2 idevento
 
   data_type: 'numeric'
   is_nullable: 0
   original: {data_type => "number"}
   size: 126
 
-=head2 dsc
-
-  data_type: 'varchar2'
-  is_nullable: 0
-  size: 50
-
 =cut
 
 __PACKAGE__->add_columns(
-  "cod",
+  "idlocal",
+  {
+    data_type   => "integer",
+    is_nullable => 1,
+    original    => { data_type => "number", size => [38, 0] },
+  },
+  "idevento",
   {
     data_type => "numeric",
     is_nullable => 0,
     original => { data_type => "number" },
     size => 126,
   },
-  "dsc",
-  { data_type => "varchar2", is_nullable => 0, size => 50 },
-);
-__PACKAGE__->set_primary_key("cod");
-
-=head1 RELATIONS
-
-=head2 eventoes
-
-Type: has_many
-
-Related object: L<socialEvents::Schema::Result::Evento>
-
-=cut
-
-__PACKAGE__->has_many(
-  "eventoes",
-  "socialEvents::Schema::Result::Evento",
-  { "foreign.codtipoe" => "self.cod" },
-  { cascade_copy => 0, cascade_delete => 0 },
 );
 
 
 # Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-01-23 17:30:58
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:RnB/8xU1ots9pGFGaBCZDg
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:s1Y77mGEONQPH4ldgG7gaQ
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
