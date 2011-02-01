@@ -13,7 +13,7 @@ has_field 'usr' => (
     required_message => 'Introduza o nome de utilizador', 
     ); 
 
-has_field 'nome'  => ( type => 'Text' );
+has_field 'nome'  => ( type => 'Text');
 has_field 'morada' => ( type => 'Text'); 
 has_field 'cidade' => ( type => 'Text'); 
 has_field 'codpais' => ( type => 'Select' , label => 'País' ); 

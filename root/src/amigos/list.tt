@@ -1,0 +1,23 @@
+<table id="locais" cellspacing="0" summary="Locais criados">
+<caption>Eventos criados por [% c.user.usr %]</caption>
+  <tr>
+    [% FOR column IN amigos.result_source.columns %]
+    <th scope="col">[% column %]</th>
+    [% END %]
+    <th/>
+    [% counter = 0 %]
+  </tr>
+  [% WHILE  (coisa =  amigos.next)  %]
+<tr [% IF (counter % 2) == 0 %] class="alt"[% END %]>
+  [% FOR column IN amigos.result_source.columns %]
+  <td>[% coisa.$column %] </td>
+  [% END %]
+  <td>
+    <a href="[% '/users/perfil' _ local.idlocal  %]">View</a>   
+    <a href="[% '/eventos/create/' _ local.idlocal  %]">Criar Evento</a>
+  <td>[% coisa.codtipoe.dsc %] </td> 
+  [% counter = counter + 1 %]
+</tr>[% END %]
+</table>
+
+

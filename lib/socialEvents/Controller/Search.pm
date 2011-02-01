@@ -20,8 +20,6 @@ sub search : Global {
     my $input = $self->search_form->field('input')->value;
     $input = '%' . $input . '%'; 
 
-
-
     my $rs = $c->model('DB::Evento');
 
 #search nome ou descriçao
@@ -46,25 +44,39 @@ sub search : Global {
     }
 
 #Search tipo de evento
-    if (my @array = $self->search_form->field('tipo_de_evento')->value){
-        if (grep {$_ ne 'Todos'} @array){
-            $c->log->debug("O PRA MIM AQUI!" . @array); 
-            $rs = $rs->search({ codtipoe => { '=' =>   \@array }}); 
+    my $do_tipo = 1; 
+    if (my $array = $self->search_form->field('tipo_de_evento')->value){
+        my $coisa ;
+        foreach $coisa (@$array){
+            $c->log->debug("O PRA MIM AQUI Evento " . $coisa); 
+            if ($coisa eq 'Todos'){
+                $do_tipo = undef; 
+                last; 
+            }
+        }
+        if ($do_tipo){
+            $rs = $rs->search({ codtipoe => { '=' =>   $array }}); 
         }
     }
-    $rs = $rs->search({}, { '+columns' => ['codtipoe.dsc'] , join => ['codtipoe'] }); 
 
-#Search tipo de local 
-    if (my @array = $self->search_form->field('tipo_de_local')->value){
-        if (grep {$_ ne 'Todos'} @array){
-            $c->log->debug("O PRA MIM AQUI!" . @array);
-#            my $sql = 'IS NOT NULL';
-            $rs = $rs->search( { 'me.idlocal' =>{'!=' => undef}});
-#            $rs = $rs->search({idlocal => { '!=' => undef }}; 
-             $rs = $rs->search({ 'idlocal.codtipol' => { '=' =>   \@array }}, { join => 'idlocal', }); 
+#search tipo de local 
+    $do_tipo = 1; 
+    $rs = $rs->search({}, { '+columns' => ['codtipoe.dsc'] , join => ['codtipoe'] }); 
+    if (my $array = $self->search_form->field('tipo_de_local')->value){
+        my $coisa ;
+        foreach $coisa (@$array){
+            $c->log->debug("O PRA MIM AQUI local " . $coisa); 
+            if ($coisa eq 'Todos'){
+                $do_tipo = undef; 
+                last; 
+            }
+        }
+        if ($do_tipo){
+            $rs = $rs->search({'me.idlocal' => { '!=' => undef }}); 
+            $rs = $rs->search({ 'idlocal.codtipol' => { '=' =>   $array }}, { join => 'idlocal', });
         }
     }
-    
+
 #Search preço minimo e máximo. 
 
     if (my $preco_min = $self->search_form->field('preco_min')->value){
@@ -113,10 +125,6 @@ my $dtf = $c->model('DB')->schema->storage->datetime_parser;
     
     $c->stash->{results} = $rs; 
     $c->stash->{'template'} =  'search/debug.tt';         
-
-#search date antes_de 
-
-
 
 
 }

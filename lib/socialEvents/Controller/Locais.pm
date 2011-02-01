@@ -15,9 +15,10 @@ sub index :Path :Args(0) {
     $c->stash( template => 'local/index.tt' ); 
     $self->do_list($c) ; 
 }
+
+
 sub view : Local : Args(1){
     my ($self , $c, $id_local) = @_; 
-    
     #check to see if this local exists 
     
     my $local = $c->model('DB::Locai')->find($id_local );  # returns just one or undef

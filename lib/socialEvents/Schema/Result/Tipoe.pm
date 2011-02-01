@@ -25,10 +25,9 @@ __PACKAGE__->table("tipoe");
 
 =head2 cod
 
-  data_type: 'numeric'
+  is_auto_increment: 1
   is_nullable: 0
-  original: {data_type => "number"}
-  size: 126
+  sequence: 'codtipoe'
 
 =head2 dsc
 
@@ -40,12 +39,7 @@ __PACKAGE__->table("tipoe");
 
 __PACKAGE__->add_columns(
   "cod",
-  {
-    data_type => "numeric",
-    is_nullable => 0,
-    original => { data_type => "number" },
-    size => 126,
-  },
+  { is_auto_increment => 1, is_nullable => 0, sequence => "codtipoe" },
   "dsc",
   { data_type => "varchar2", is_nullable => 0, size => 50 },
 );
@@ -68,9 +62,24 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+=head2 tiposprefs
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-01-23 17:30:58
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:RnB/8xU1ots9pGFGaBCZDg
+Type: has_many
+
+Related object: L<socialEvents::Schema::Result::Tipospref>
+
+=cut
+
+__PACKAGE__->has_many(
+  "tiposprefs",
+  "socialEvents::Schema::Result::Tipospref",
+  { "foreign.tipoepref" => "self.cod" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-02-01 20:37:41
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:CeEN/CBvYXpcP3GUURE27w
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

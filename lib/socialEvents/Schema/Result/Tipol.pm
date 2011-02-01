@@ -25,10 +25,9 @@ __PACKAGE__->table("tipol");
 
 =head2 cod
 
-  data_type: 'numeric'
+  is_auto_increment: 1
   is_nullable: 0
-  original: {data_type => "number"}
-  size: 126
+  sequence: 'codtipol'
 
 =head2 dsc
 
@@ -40,12 +39,7 @@ __PACKAGE__->table("tipol");
 
 __PACKAGE__->add_columns(
   "cod",
-  {
-    data_type => "numeric",
-    is_nullable => 0,
-    original => { data_type => "number" },
-    size => 126,
-  },
+  { is_auto_increment => 1, is_nullable => 0, sequence => "codtipol" },
   "dsc",
   { data_type => "varchar2", is_nullable => 0, size => 50 },
 );
@@ -69,8 +63,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-01-21 19:18:34
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:3k+98JysW/C0c5B/jhtF5w
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-01-29 00:50:22
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:bXh1+bWrQtekLAMakHFyHA
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

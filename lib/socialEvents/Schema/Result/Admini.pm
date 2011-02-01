@@ -38,7 +38,8 @@ __PACKAGE__->table("adminis");
 =head2 activo
 
   data_type: 'char'
-  is_nullable: 1
+  default_value: 1
+  is_nullable: 0
   size: 1
 
 =cut
@@ -49,13 +50,13 @@ __PACKAGE__->add_columns(
   "pwd",
   { data_type => "varchar2", is_nullable => 0, size => 50 },
   "activo",
-  { data_type => "char", is_nullable => 1, size => 1 },
+  { data_type => "char", default_value => 1, is_nullable => 0, size => 1 },
 );
 __PACKAGE__->set_primary_key("adm");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-01-23 17:30:58
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:TAr9VYjQXi/1AsZCKbg9GQ
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-01-29 00:29:25
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:BA8/VcBJqO8QU4W/BzdmGQ
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

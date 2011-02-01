@@ -1,4 +1,4 @@
-package socialEvents::Schema::Result::Eventosporlugar;
+package socialEvents::Schema::Result::Tipospreferido;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -15,50 +15,58 @@ __PACKAGE__->load_components("InflateColumn::DateTime");
 
 =head1 NAME
 
-socialEvents::Schema::Result::Eventosporlugar
+socialEvents::Schema::Result::Tipospreferido
 
 =cut
 
-__PACKAGE__->table("eventosporlugar");
+__PACKAGE__->table("tipospreferidos");
 
 =head1 ACCESSORS
 
-=head2 idlocal
+=head2 usr
+
+  data_type: 'varchar2'
+  is_nullable: 1
+  size: 100
+
+=head2 codtipoe
 
   data_type: 'numeric'
-  is_nullable: 0
+  is_nullable: 1
   original: {data_type => "number"}
   size: 126
 
-=head2 idevento
+=head2 vezes
 
   data_type: 'numeric'
-  is_nullable: 0
+  is_nullable: 1
   original: {data_type => "number"}
   size: 126
 
 =cut
 
 __PACKAGE__->add_columns(
-  "idlocal",
+  "usr",
+  { data_type => "varchar2", is_nullable => 1, size => 100 },
+  "codtipoe",
   {
     data_type => "numeric",
-    is_nullable => 0,
+    is_nullable => 1,
     original => { data_type => "number" },
     size => 126,
   },
-  "idevento",
+  "vezes",
   {
     data_type => "numeric",
-    is_nullable => 0,
+    is_nullable => 1,
     original => { data_type => "number" },
     size => 126,
   },
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-01-29 00:50:22
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:yT/hTGze/d9V8xJuAnk4nQ
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-02-01 20:37:41
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:WjnS6B/U1cTq5tMl0jGpcg
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

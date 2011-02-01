@@ -1,4 +1,4 @@
-package socialEvents::Schema::Result::Estat;
+package socialEvents::Schema::Result::Einscritosfuturo;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -15,47 +15,44 @@ __PACKAGE__->load_components("InflateColumn::DateTime");
 
 =head1 NAME
 
-socialEvents::Schema::Result::Estat
+socialEvents::Schema::Result::Einscritosfuturo
 
 =cut
 
-__PACKAGE__->table("estat");
+__PACKAGE__->table("einscritosfuturos");
 
 =head1 ACCESSORS
 
-=head2 descr
-
-  data_type: 'varchar2'
-  is_nullable: 0
-  size: 30
-
-=head2 qtd
+=head2 idevento
 
   data_type: 'numeric'
-  default_value: 0
   is_nullable: 0
   original: {data_type => "number"}
   size: 126
 
+=head2 usr
+
+  data_type: 'varchar2'
+  is_nullable: 0
+  size: 100
+
 =cut
 
 __PACKAGE__->add_columns(
-  "descr",
-  { data_type => "varchar2", is_nullable => 0, size => 30 },
-  "qtd",
+  "idevento",
   {
     data_type => "numeric",
-    default_value => 0,
     is_nullable => 0,
     original => { data_type => "number" },
     size => 126,
   },
+  "usr",
+  { data_type => "varchar2", is_nullable => 0, size => 100 },
 );
-__PACKAGE__->set_primary_key("descr");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-01-29 00:29:25
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:9wI33ODTg8j7rIkk2HFPtQ
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-02-01 20:37:41
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:TxcYC84wAusTaqdIiujzpQ
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

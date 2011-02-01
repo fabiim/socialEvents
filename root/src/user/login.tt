@@ -1,5 +1,1 @@
-[% IF !c.user_exists %]
-   [% form.render %]
-[% ELSE %] 
-<p> What are you doing? You logged in already.  </p> 
-[% END %] 
+[% form.render %]

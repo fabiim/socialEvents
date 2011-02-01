@@ -38,6 +38,7 @@ __PACKAGE__->table("locais");
 =head2 descl
 
   data_type: 'varchar2'
+  default_value: ' '
   is_nullable: 0
   size: 1000
 
@@ -78,6 +79,7 @@ __PACKAGE__->table("locais");
 =head2 publicol
 
   data_type: 'char'
+  default_value: 1
   is_nullable: 0
   size: 1
 
@@ -91,6 +93,7 @@ __PACKAGE__->table("locais");
 =head2 m18
 
   data_type: 'char'
+  default_value: 0
   is_nullable: 0
   size: 1
 
@@ -102,7 +105,12 @@ __PACKAGE__->add_columns(
   "nomel",
   { data_type => "varchar2", is_nullable => 0, size => 100 },
   "descl",
-  { data_type => "varchar2", is_nullable => 0, size => 1000 },
+  {
+    data_type => "varchar2",
+    default_value => " ",
+    is_nullable => 0,
+    size => 1000,
+  },
   "capl",
   {
     data_type => "numeric",
@@ -125,11 +133,11 @@ __PACKAGE__->add_columns(
   "codpais",
   { data_type => "char", is_foreign_key => 1, is_nullable => 0, size => 3 },
   "publicol",
-  { data_type => "char", is_nullable => 0, size => 1 },
+  { data_type => "char", default_value => 1, is_nullable => 0, size => 1 },
   "criadorl",
   { data_type => "varchar2", is_foreign_key => 1, is_nullable => 0, size => 100 },
   "m18",
-  { data_type => "char", is_nullable => 0, size => 1 },
+  { data_type => "char", default_value => 0, is_nullable => 0, size => 1 },
 );
 __PACKAGE__->set_primary_key("idlocal");
 
@@ -150,18 +158,18 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 codpai
+=head2 criadorl
 
 Type: belongs_to
 
-Related object: L<socialEvents::Schema::Result::Pai>
+Related object: L<socialEvents::Schema::Result::User>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "codpai",
-  "socialEvents::Schema::Result::Pai",
-  { codpais => "codpais" },
+  "criadorl",
+  "socialEvents::Schema::Result::User",
+  { usr => "criadorl" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -180,24 +188,24 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 criadorl
+=head2 codpai
 
 Type: belongs_to
 
-Related object: L<socialEvents::Schema::Result::User>
+Related object: L<socialEvents::Schema::Result::Pai>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "criadorl",
-  "socialEvents::Schema::Result::User",
-  { usr => "criadorl" },
+  "codpai",
+  "socialEvents::Schema::Result::Pai",
+  { codpais => "codpais" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-01-23 17:30:58
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:QJM5AUDDVmsEd44VHZ8hGw
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-01-29 00:50:22
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:HOF/NIQQ0WIASLx59QQzuA
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

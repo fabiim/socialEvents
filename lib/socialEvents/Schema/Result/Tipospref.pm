@@ -1,4 +1,4 @@
-package socialEvents::Schema::Result::Amigo;
+package socialEvents::Schema::Result::Tipospref;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -15,11 +15,11 @@ __PACKAGE__->load_components("InflateColumn::DateTime");
 
 =head1 NAME
 
-socialEvents::Schema::Result::Amigo
+socialEvents::Schema::Result::Tipospref
 
 =cut
 
-__PACKAGE__->table("amigos");
+__PACKAGE__->table("tipospref");
 
 =head1 ACCESSORS
 
@@ -30,52 +30,44 @@ __PACKAGE__->table("amigos");
   is_nullable: 0
   size: 100
 
-=head2 amigo
+=head2 tipoepref
 
-  data_type: 'varchar2'
+  data_type: 'numeric'
   is_foreign_key: 1
   is_nullable: 0
-  size: 100
-
-=head2 conv
-
-  data_type: 'char'
-  default_value: 1
-  is_nullable: 1
-  size: 1
-
-=head2 dataconv
-
-  is_auto_increment: 1
+  original: {data_type => "number"}
+  size: 126
 
 =cut
 
 __PACKAGE__->add_columns(
   "usr",
   { data_type => "varchar2", is_foreign_key => 1, is_nullable => 0, size => 100 },
-  "amigo",
-  { data_type => "varchar2", is_foreign_key => 1, is_nullable => 0, size => 100 },
-  "conv",
-  { data_type => "char", default_value => 1, is_nullable => 1, size => 1 },
-  "dataconv",
-  { is_auto_increment => 1 },
+  "tipoepref",
+  {
+    data_type => "numeric",
+    is_foreign_key => 1,
+    is_nullable => 0,
+    original => { data_type => "number" },
+    size => 126,
+  },
 );
-__PACKAGE__->set_primary_key("usr", "amigo");
+__PACKAGE__->set_primary_key("usr");
 
 =head1 RELATIONS
 
-=head2 amigo
+=head2 tipoepref
 
 Type: belongs_to
 
-Related object: L<socialEvents::Schema::Result::User>
+Related object: L<socialEvents::Schema::Result::Tipoe>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "amigo",
-  "socialEvents::Schema::Result::User",
-  { usr => "amigo" },
+  "tipoepref",
+  "socialEvents::Schema::Result::Tipoe",
+  { cod => "tipoepref" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
@@ -96,7 +88,7 @@ __PACKAGE__->belongs_to(
 
 
 # Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-02-01 20:37:41
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:5xC6fal3e2+qNxL4+r7HxQ
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:oL35YQ4C8a/8F/V6vzrEng
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

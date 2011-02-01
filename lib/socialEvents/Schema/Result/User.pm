@@ -56,9 +56,7 @@ __PACKAGE__->table("users");
 
 =head2 dn
 
-  data_type: 'datetime'
-  is_nullable: 0
-  original: {data_type => "date"}
+  is_auto_increment: 1
 
 =head2 pwd
 
@@ -69,20 +67,29 @@ __PACKAGE__->table("users");
 =head2 activo
 
   data_type: 'char'
+  default_value: 1
   is_nullable: 0
   size: 1
 
 =head2 login
 
   data_type: 'char'
-  is_nullable: 1
+  default_value: 0
+  is_nullable: 0
   size: 1
 
 =head2 email
 
   data_type: 'varchar2'
-  is_nullable: 1
+  is_nullable: 0
   size: 100
+
+=head2 sexo
+
+  data_type: 'char'
+  default_value: 1
+  is_nullable: 0
+  size: 1
 
 =cut
 
@@ -98,21 +105,20 @@ __PACKAGE__->add_columns(
   "codpais",
   { data_type => "char", is_foreign_key => 1, is_nullable => 0, size => 3 },
   "dn",
-  {
-    data_type   => "datetime",
-    is_nullable => 0,
-    original    => { data_type => "date" },
-  },
+  { is_auto_increment => 1 },
   "pwd",
   { data_type => "varchar2", is_nullable => 0, size => 50 },
   "activo",
-  { data_type => "char", is_nullable => 0, size => 1 },
+  { data_type => "char", default_value => 1, is_nullable => 0, size => 1 },
   "login",
-  { data_type => "char", is_nullable => 1, size => 1 },
+  { data_type => "char", default_value => 0, is_nullable => 0, size => 1 },
   "email",
-  { data_type => "varchar2", is_nullable => 1, size => 100 },
+  { data_type => "varchar2", is_nullable => 0, size => 100 },
+  "sexo",
+  { data_type => "char", default_value => 1, is_nullable => 0, size => 1 },
 );
 __PACKAGE__->set_primary_key("usr");
+__PACKAGE__->add_unique_constraint("sys_c00113132", ["email"]);
 
 =head1 RELATIONS
 
@@ -142,6 +148,36 @@ Related object: L<socialEvents::Schema::Result::Amigo>
 __PACKAGE__->has_many(
   "amigos_usrs",
   "socialEvents::Schema::Result::Amigo",
+  { "foreign.usr" => "self.usr" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+=head2 convrej_amigoes
+
+Type: has_many
+
+Related object: L<socialEvents::Schema::Result::Convrej>
+
+=cut
+
+__PACKAGE__->has_many(
+  "convrej_amigoes",
+  "socialEvents::Schema::Result::Convrej",
+  { "foreign.amigo" => "self.usr" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+=head2 convrej_usrs
+
+Type: has_many
+
+Related object: L<socialEvents::Schema::Result::Convrej>
+
+=cut
+
+__PACKAGE__->has_many(
+  "convrej_usrs",
+  "socialEvents::Schema::Result::Convrej",
   { "foreign.usr" => "self.usr" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -206,6 +242,21 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+=head2 tipospref
+
+Type: might_have
+
+Related object: L<socialEvents::Schema::Result::Tipospref>
+
+=cut
+
+__PACKAGE__->might_have(
+  "tipospref",
+  "socialEvents::Schema::Result::Tipospref",
+  { "foreign.usr" => "self.usr" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 =head2 codpai
 
 Type: belongs_to
@@ -222,23 +273,10 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-01-16 16:24:23
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:RflnUFg8cbv/02hrG5X4Rg
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-02-01 20:37:41
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:EEn4ZE654A/ZHsqPj6W68g
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
-
-sub new{
-  my ($class, $args) = @_;
-  if (! (exists $args->{activo})) { $args->{activo} = '1'; }
-  if (!(exists $args->{login})   ) { $args->{login} = '0'; }
-
-  return $class->next::method($args);
-
-
-}
- # For UNIQUE (column1, column2)
-  __PACKAGE__->add_unique_constraint([ qw/usr/ ],
-  );
 __PACKAGE__->meta->make_immutable;
 1;

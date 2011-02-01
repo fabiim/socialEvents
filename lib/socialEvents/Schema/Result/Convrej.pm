@@ -1,4 +1,4 @@
-package socialEvents::Schema::Result::Amigo;
+package socialEvents::Schema::Result::Convrej;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -15,11 +15,11 @@ __PACKAGE__->load_components("InflateColumn::DateTime");
 
 =head1 NAME
 
-socialEvents::Schema::Result::Amigo
+socialEvents::Schema::Result::Convrej
 
 =cut
 
-__PACKAGE__->table("amigos");
+__PACKAGE__->table("convrej");
 
 =head1 ACCESSORS
 
@@ -37,16 +37,19 @@ __PACKAGE__->table("amigos");
   is_nullable: 0
   size: 100
 
-=head2 conv
+=head2 datarej
 
-  data_type: 'char'
-  default_value: 1
-  is_nullable: 1
-  size: 1
+  data_type: 'datetime'
+  default_value: current_timestamp
+  is_nullable: 0
+  original: {data_type => "date",default_value => \"sysdate"}
 
 =head2 dataconv
 
-  is_auto_increment: 1
+  data_type: 'datetime'
+  default_value: current_timestamp
+  is_nullable: 0
+  original: {data_type => "date",default_value => \"sysdate"}
 
 =cut
 
@@ -55,12 +58,22 @@ __PACKAGE__->add_columns(
   { data_type => "varchar2", is_foreign_key => 1, is_nullable => 0, size => 100 },
   "amigo",
   { data_type => "varchar2", is_foreign_key => 1, is_nullable => 0, size => 100 },
-  "conv",
-  { data_type => "char", default_value => 1, is_nullable => 1, size => 1 },
+  "datarej",
+  {
+    data_type     => "datetime",
+    default_value => \"current_timestamp",
+    is_nullable   => 0,
+    original      => { data_type => "date", default_value => \"sysdate" },
+  },
   "dataconv",
-  { is_auto_increment => 1 },
+  {
+    data_type     => "datetime",
+    default_value => \"current_timestamp",
+    is_nullable   => 0,
+    original      => { data_type => "date", default_value => \"sysdate" },
+  },
 );
-__PACKAGE__->set_primary_key("usr", "amigo");
+__PACKAGE__->set_primary_key("usr", "amigo", "datarej");
 
 =head1 RELATIONS
 
@@ -95,8 +108,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-02-01 20:37:41
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:5xC6fal3e2+qNxL4+r7HxQ
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-01-29 00:29:25
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:A7p/4HhTyqsricDHJDHK0w
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

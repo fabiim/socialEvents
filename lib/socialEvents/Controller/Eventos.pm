@@ -1,7 +1,7 @@
 package socialEvents::Controller::Eventos;
 use Moose;
 use namespace::autoclean;
-
+use DateTime; 
 BEGIN {extends 'Catalyst::Controller'; }
 
 use socialEvents::Form::EventoEdit;
@@ -11,10 +11,38 @@ has 'edit_form' => ( isa => 'socialEvents::Form::EventoEdit' , is => 'rw' , lazy
 
 has 'view_form' => ( isa => 'socialEvents::Form::EventoView' , is => 'rw' , lazy => 1 , default => sub { socialEvents::Form::EventoView->new }) ; 
 
+
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
     $c->stash( template => 'evento/index.tt' ); 
     $self->do_list($c); 
+}
+
+sub add_going : Local : Args(1){
+    my ($self , $c, $id_evento) = @_; 
+    my $evento = $c->model('DB::Evento')->find($id_evento); 
+    if (!$evento) {
+        die "No such evento";
+    }
+    $evento->e_inscritoes->find_or_create({ idevento => $id_evento , usr => $c->user->get('usr')},{ key => 'primary' } );   
+#    my $e_insc_rs = $c->model('DB::EInscrito'); 
+}
+
+sub add_foi : Local : Args(1){
+    my ($self , $c, $id_evento) = @_; 
+    my $evento = $c->model('DB::Evento')->find($id_evento); 
+
+    
+    if (!$evento) {
+        die "No such evento";
+    }
+
+    my $dataHoje= Datetime->new(); 
+    my $cmp = Datetime->compare($dataHoje , $evento->datai);
+    if ($cmp >= 0 ) { 
+    $evento->e_fois->find_or_create({ idevento => $id_evento , usr => $c->user->get('usr')},{ key => 'primary' } );   
+    }
+    else {die "Ainda nao começou"; }
 }
 
 sub view : Local : Args(1){

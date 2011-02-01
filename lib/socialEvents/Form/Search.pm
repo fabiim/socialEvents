@@ -26,7 +26,6 @@ has_field 'antes_de_bool' => (type => 'Boolean');
 
 has_field 'tipo_de_local' => (type => 'Multiple' , default => 'Todos'); 
 
-
 sub options_tipo_de_local{
     my $self = shift; 
     return unless $self->schema; 

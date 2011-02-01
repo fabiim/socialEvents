@@ -29,24 +29,18 @@ The root page (/)
 =cut
 
 sub index :Path :Args(0) {
-#    my ($self, $c) = @_;
-#    my $users_rs =  $c->model('DB')->resultset('User'); 
-#    my $user = $users_rs->find( { usr  => 'fabiim' }, { key => 'primary' } ); 
-#    die "no such user" if (!$user) ; 
-#    $c->stash( { user => $user }); 
-#    $c->stash( template => 'index.tt' ); 
+    my ($self, $c) = @_;
+    if ($c->user_exists() ){
+        $c->response->redirect( $c->uri_for('/user')); 
+        $c->detach(); 
+    }
+    $c->stash( template => 'index.tt' ); 
 }
-
-
-=head2 default
-
-Standard 404 error page
-
-=cut
 
 sub default :Path {
     my ( $self, $c ) = @_;
-    $c->response->body( 'Page not found' );
+    $c->stash(error_message => 'Page doesn\'t exist');
+    $c->stash(template => 'notfound.tt'); 
     $c->response->status(404);
 }
 
