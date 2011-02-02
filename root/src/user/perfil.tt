@@ -1,5 +1,1 @@
-[% IF c.user_exists %]
-   [% form.render %]
-[% ELSE %] 
-<p> Please Login first. </p> 
-[% END %] 
+[% form.render %]

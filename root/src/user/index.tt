@@ -1,1 +1,33 @@
-<h3> Saia de casa! <h3> 
+<h1> Saia de casa! <h1> 
+<h1> Bem vindo  [% c.user.usr %] ! :<h1> 
+[% IF ultimo_evento %]
+   <h2>Você não sai de casa desde :<h2> <p>[% ultimo_evento.datai %]  <a href="[% '/eventos/view/' _ ultimo_evento.idevento  %]">Ver Evento</a> </p>  
+[% END %]
+[% IF proximo_evento %] 
+   Você vai sair de casa em : [% proximo_evento.datai %] <a href = "[% '/eventos/view/' _ proximo_evento.idevento %]"> Ver Evento</a> 
+[% END %]
+
+[% IF eventos_amigos %]
+<table id="eventos" cellspacing="0" summary="Eventos Proximos">
+<caption>Proximos eventos interessantes para si. </caption>
+  <tr>
+    [% FOR column IN colnames %]
+    <th scope="col">[% column %]</th>
+    [% END %]
+    </th>
+    [% counter = 0 %]
+  </tr>
+  [% FOR thing IN eventos_amigos %]
+<tr [% IF (counter % 2) == 0 %] class="alt"[% END %]>
+  <td>[% thing.idevento.nomee %]</td>
+  <td>[% thing.idevento.idlocal.nomel %]</td>
+  <td>[% thing.idevento.datai %]</td>
+  <td>[% thing.namigos %]</td>
+  <td>
+    <a href="[% '/eventos/view/' _ thing.idevento.idevento  %]">Ver Evento</a>   
+  </td>[% counter = counter + 1 %]
+</tr>[% END %]
+</table>
+[% END %]
+
+

@@ -24,32 +24,28 @@ sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
     $self->checkUser($c); 
 
+    
+    my $naoSaiDeCasa  =  $c->model('DB::Evento')->search({'e_fois.usr' => $c->user->get('usr')}, {join => 'e_fois', order_by => 'me.datai DESC'});
+
+    $c->model('DB::Evento')->reset; 
 
     my $data_hoje = DateTime->from_epoch( epoch => time());
-
     my $dtf = $c->model('DB')->schema->storage->datetime_parser;
-
-    my $naoSaiDeCasa  =  $c->model('DB::Evento')->search({'e_fois.usr' => $c->user->get('usr')}, {join => 'e_fois', order_by => 'me.datai'});
-
-    my $coisa = $naoSaiDeCasa->first; 
-    if ($coisa) {
-        $c->log->debug("AQUI ". $coisa->idevento ); 
-    }
-    else{
-        $c->log->debug("Ainda nao sai de casa"); 
-    }
     
     my $vaiSairDeCasa = $c->model('DB::Evento')->search({'e_inscritoes.usr' => $c->user->get('usr'), 'me.datai' => {'>=' => $dtf->format_datetime($data_hoje)}} , { join => 'e_inscritoes' , order_by => 'me.datai'}); 
 
-    $coisa = $vaiSairDeCasa->first; 
-    if ($coisa) {
-        $c->log->debug("AQUI ". $coisa->idevento); 
-    }
-    else{
-        $c->log->debug("Nao vou sair de casa"); 
-	# Esta semana os teus amigos vão a : 
-    }
 
+    my $eventos_amigos = [$c->model('DB::Amigosincritosevento')->search({ 'usr' =>  $c->user->get('usr')} , { order_by => 'namigos DESC' } )->all() ];
+
+    if ($eventos_amigos != 0 ){
+	$c->log->debug("$eventos_amigos"); 
+	$c->log->debug("$eventos_amigos"); 
+	my @colnames = ('Evento' , 'Local' , 'Data' , 'Quantidade de Amigos que vao'); 
+	my @colref  = ('idevento.nomee', 'idevento.idlocal.nomel', 'idevento.datai', 'idevento.namigos');
+	$c->stash ( eventos_amigos => $eventos_amigos, colref => \@colref , colnames => \@colnames); 
+    }
+    $c->stash ( ultimo_evento => $naoSaiDeCasa->first); 
+    $c->stash ( proximo_evento => $vaiSairDeCasa->first); 
     
     $c->stash( template => 'user/index.tt') ; 
 }
