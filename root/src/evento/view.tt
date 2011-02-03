@@ -1,1 +1,11 @@
-[% form.render %]
+<h1> [% evento.nomee %] </h1>
+[% IF foi %] <h2> Voçê foi  a este evento! </h2> 
+[% ELSE %] [% IF vai %] <h2> Voçê vai a este evento! </h2> [%END %]
+[% END %]
+<p>
+[% form.render %]</p>
+[% IF podeir == 1 and ! vai %] 
+<p><a class="big" href="[% '/eventos/add_going/' _ evento.idevento  %]">Eu Vou! </a></p>
+[% ELSEIF (not foi) %]
+<p><a class="big" href="[% '/eventos/add_foi/' _ evento.idevento  %]">Eu Fui! </a></p>
+[% END %] 

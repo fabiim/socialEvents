@@ -32,6 +32,7 @@ sub options_sexo{
         0 => 'Feminino' , 
         ); 
 }
+
 sub validate{
     my $self = shift; 
     return unless $self->schema; 

@@ -17,5 +17,5 @@
   </td>[% counter = counter + 1 %]
 </tr>[% END %]
 </table>
-<p><a class="big" href="[% '/locais/create' %]">+ Criar Local</a></p>
+
 

@@ -9,22 +9,19 @@ has '+item_class' => ( default => 'User' );
 
 has_field 'usr' => ( 
     type => 'Text' , 
-    required => 1 , 
-    required_message => 'Introduza o nome de utilizador', 
-    , readonly => 1); 
-
-has_field 'nome'  => ( type => 'Text' , readonly =>1);
-has_field 'morada' => ( type => 'Text' , readonly =>1); 
-has_field 'cidade' => ( type => 'Text', readonly =>1 ); 
-has_field 'codpais' => ( type => 'Select' , label => 'País' , readonly =>1 ); 
-has_field 'dn' => (type => 'DateTime' , readonly =>1 ); 
-has_field 'dn.year' => ( type => 'Year', readonly =>1);
-has_field 'dn.month' => ( type => 'Month', readonly =>1); 
-has_field 'dn.day' => ( type => 'MonthDay', readonly =>1); 
-has_field 'email' => ( type   => 'Email', required => 1, required_message => 'Introduza o email.', readonly =>1);
-has_field 'pwd' => (type => 'Password',  inactive => 1, noupdate => 1, readonly =>1); 
-has_field 'login' => (type => 'Text', inactive =>1 , readonly =>1); 
-has_field 'activo' =>(type => 'Text', inactive =>1 , readonly =>1); 
+    , readonly => 1,
+    label =>'Username'
+); 
+has_field 'nome'  => ( type => 'Text' , readonly =>1, label => 'Nome');
+has_field 'morada' => ( type => 'Text' , readonly =>1 , label => 'Morada'); 
+has_field 'cidade' => ( type => 'Text', readonly =>1 , label => 'Cidade'); 
+has_field 'codpais' => ( type => 'Select' , label => 'País' , readonly =>1 , label => 'País'); 
+has_field 'dn' => (type => 'DateTime' , readonly =>1 , label =>'Data de Nascimento'); 
+has_field 'dn.year' => ( type => 'Year', readonly =>1, label => 'Ano');
+has_field 'dn.month' => ( type => 'Month', readonly =>1, label => 'Mês'); 
+has_field 'dn.day' => ( type => 'MonthDay', readonly =>1, label => 'Dia'); 
+has_field 'email' => ( type   => 'Email', , readonly =>1, label => 'Email');
+has_field 'login' => (type => 'Text', inactive =>1 , readonly =>1, 'Online'); 
 
 sub options_codpais{
     my $self = shift; 
@@ -36,10 +33,6 @@ sub options_codpais{
     }
     return @selections; 
 }
-
-has '+unique_messages' =>
-    ( default => sub { { users_usr =>
-                             'Utilizador Existente. Por favor introduza um novo.' } } );
 
 no HTML::FormHandler::Moose;
 __PACKAGE__->meta->make_immutable;

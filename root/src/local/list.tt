@@ -1,5 +1,5 @@
 <table id="locais" cellspacing="0" summary="Locais criados">
-<caption>Eventos criados por [% c.user.usr %]</caption>
+<caption>Locais criados por [% c.user.usr %]</caption>
   <tr>
     [% FOR column IN colnames %]
     <th scope="col">[% column %]</th>

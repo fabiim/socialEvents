@@ -7,13 +7,6 @@ with 'HTML::FormHandler::Render::Table';
 
 has '+item_class' => ( default => 'Evento' );
 
-
-has_field 'usr' =>( 
-    type => 'Text', 
-    required => 1, 
-    required_message => 'Introduza o nome de utilizador', 
-    );
-
 has_field 'nomee' =>( type => 'Text' , readonly => 1); 
 has_field 'cape' => (type => 'PosInteger',readonly => 1); 
 has_field 'precoe' => (type => 'PosInteger' , readonly => 1);
@@ -29,7 +22,6 @@ has_field 'codtipoe' => ( type => 'Select', readonly => 1);
 has_field 'desce' => ( type =>'Text' , label => 'Descrição Evento', readonly => 1); 
 has_field 'criadore' => (type =>'Text', readonly => 1); 
 has_field 'm18' => (type => 'Boolean', readonly => 1); 
-has_field 'nomeLocal' => (type => 'Text' , readonly => 1); 
 has_field 'idlocal' => (type => 'PrimaryKey', readonly => 1); 
 
 

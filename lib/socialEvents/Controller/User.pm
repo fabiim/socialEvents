@@ -10,8 +10,6 @@ use socialEvents::Form::UserView;
 use DateTime; 
 use SQL::Translator; 
 
-
-##TODO - nao pode mudar o nome 
 has 'login_form' => ( isa => 'socialEvents::Form::Login' , is => 'rw' , lazy => 1 , default => sub { socialEvents::Form::Login->new }) ; 
 
 has 'view_form' => ( isa => 'socialEvents::Form::UserView' , is => 'rw' , lazy => 1 , default => sub { socialEvents::Form::UserView->new }) ; 
@@ -23,11 +21,8 @@ has 'perfil_form' => ( isa => 'socialEvents::Form::Perfil' , is => 'rw' , lazy =
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
     $self->checkUser($c); 
-
     
     my $naoSaiDeCasa  =  $c->model('DB::Evento')->search({'e_fois.usr' => $c->user->get('usr')}, {join => 'e_fois', order_by => 'me.datai DESC'});
-
-    $c->model('DB::Evento')->reset; 
 
     my $data_hoje = DateTime->from_epoch( epoch => time());
     my $dtf = $c->model('DB')->schema->storage->datetime_parser;
@@ -35,14 +30,14 @@ sub index :Path :Args(0) {
     my $vaiSairDeCasa = $c->model('DB::Evento')->search({'e_inscritoes.usr' => $c->user->get('usr'), 'me.datai' => {'>=' => $dtf->format_datetime($data_hoje)}} , { join => 'e_inscritoes' , order_by => 'me.datai'}); 
 
 
-    my $eventos_amigos = [$c->model('DB::Amigosincritosevento')->search({ 'usr' =>  $c->user->get('usr')} , { order_by => 'namigos DESC' } )->all() ];
+    my @eventos_amigos = $c->model('DB::Amigosincritosevento')->search({ 'usr' =>  $c->user->get('usr')} , { order_by => 'namigos DESC' } )->all() ;
 
-    if ($eventos_amigos != 0 ){
-	$c->log->debug("$eventos_amigos"); 
-	$c->log->debug("$eventos_amigos"); 
+
+    if (@eventos_amigos > 0) {
+	$c->log->debug("$#eventos_amigos"); 
 	my @colnames = ('Evento' , 'Local' , 'Data' , 'Quantidade de Amigos que vao'); 
 	my @colref  = ('idevento.nomee', 'idevento.idlocal.nomel', 'idevento.datai', 'idevento.namigos');
-	$c->stash ( eventos_amigos => $eventos_amigos, colref => \@colref , colnames => \@colnames); 
+	$c->stash ( eventos_amigos => \@eventos_amigos, colref => \@colref , colnames => \@colnames); 
     }
     $c->stash ( ultimo_evento => $naoSaiDeCasa->first); 
     $c->stash ( proximo_evento => $vaiSairDeCasa->first); 
@@ -111,7 +106,6 @@ sub logout :Local :Args(0) {
 
 sub view : Local : Args(1){
     my ($self , $c, $id_usr) = @_; 
-    #check to see if this local exists 
     $self->checkUser($c); 
     my $usr = $c->model('DB::User')->find($id_usr );  # returns just one or undef
     if (!$usr){

@@ -2,20 +2,20 @@ package socialEvents::Form::LocalView;
 
 use HTML::FormHandler::Moose;
 extends 'HTML::FormHandler::Model::DBIC';
-
+with 'HTML::FormHandler::Render::Simple';
 has '+item_class' => ( default => 'Locai');
 
-has_field 'nomel' => (type => 'Text', readonly => 1); 
-has_field 'descl' => (type => 'Text', readonly => 1); 
-has_field 'capl' => (type => 'PosInteger', readonly => 1); 
-has_field 'moradal' => (type => 'Text' ,readonly => 1 ); 
-has_field 'cidadel' => (type => 'Text',  readonly => 1); 
-has_field 'codtipol' => (type => 'Select', readonly => 1); 
-has_field 'codpais' => (type => 'Select', readonly => 1); 
-has_field 'publicol' => (type => 'Boolean', readonly => 1); 
+has_field 'nomel' => (type => 'Text', readonly => 1, label => 'Nome'); 
+has_field 'descl' => (type => 'Text', readonly => 1, label => 'Descrição'); 
+has_field 'capl' => (type => 'PosInteger', readonly => 1, label => 'Capacidade'); 
+has_field 'moradal' => (type => 'Text' ,readonly => 1 , label => 'Morada'); 
+has_field 'cidadel' => (type => 'Text',  readonly => 1, label => 'Cidade'); 
+has_field 'codtipol' => (type => 'Select', readonly => 1, label => 'Tipo Local'); 
+has_field 'codpais' => (type => 'Select', readonly => 1, label => 'País'); 
+has_field 'publicol' => (type => 'Boolean', readonly => 1, label => 'Publico'); 
 has_field 'criadorl' => (type => 'Text',  readonly => 1 ); 
 has_field 'm18'  => (type => 'Boolean',  readonly => 1); 
-has_field 'submit' => ( type => 'Submit', value => 'Adicionar' );
+
 
 #TODOLIST
 #publicol

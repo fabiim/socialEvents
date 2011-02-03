@@ -26,13 +26,13 @@ __PACKAGE__->table("tipospreferidos");
 =head2 usr
 
   data_type: 'varchar2'
-  is_nullable: 1
+  is_nullable: 0
   size: 100
 
 =head2 codtipoe
 
   data_type: 'numeric'
-  is_nullable: 1
+  is_nullable: 0
   original: {data_type => "number"}
   size: 126
 
@@ -47,11 +47,11 @@ __PACKAGE__->table("tipospreferidos");
 
 __PACKAGE__->add_columns(
   "usr",
-  { data_type => "varchar2", is_nullable => 1, size => 100 },
+  { data_type => "varchar2", is_nullable => 0, size => 100 },
   "codtipoe",
   {
     data_type => "numeric",
-    is_nullable => 1,
+    is_nullable => 0,
     original => { data_type => "number" },
     size => 126,
   },
@@ -63,10 +63,11 @@ __PACKAGE__->add_columns(
     size => 126,
   },
 );
+__PACKAGE__->set_primary_key("usr", "codtipoe");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-02-01 20:37:41
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:WjnS6B/U1cTq5tMl0jGpcg
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-02-02 06:23:06
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:jy1zGBy+AWKji0fWAlvirQ
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

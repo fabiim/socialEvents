@@ -19,6 +19,21 @@ a:hover {
     width: 500px;
     font-size: 1.2em;
 }
+#navbar {
+    background-color: #660000;
+    border-top: 1px solid white; 
+    top: 74px;
+    height: 24px; 
+    width: 99%;
+}
+#navbar a {
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
 
 /*
 #books {

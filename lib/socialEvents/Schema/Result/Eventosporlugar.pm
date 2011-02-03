@@ -55,10 +55,11 @@ __PACKAGE__->add_columns(
     size => 126,
   },
 );
+__PACKAGE__->set_primary_key("idlocal", "idevento");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-01-29 00:50:22
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:yT/hTGze/d9V8xJuAnk4nQ
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-02-02 06:23:06
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:5yOQ9iKxsfxG26WD2qDEqg
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

@@ -170,36 +170,6 @@ __PACKAGE__->set_primary_key("idevento");
 
 =head1 RELATIONS
 
-=head2 e_fois
-
-Type: has_many
-
-Related object: L<socialEvents::Schema::Result::EFoi>
-
-=cut
-
-__PACKAGE__->has_many(
-  "e_fois",
-  "socialEvents::Schema::Result::EFoi",
-  { "foreign.idevento" => "self.idevento" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-=head2 e_inscritoes
-
-Type: has_many
-
-Related object: L<socialEvents::Schema::Result::EInscrito>
-
-=cut
-
-__PACKAGE__->has_many(
-  "e_inscritoes",
-  "socialEvents::Schema::Result::EInscrito",
-  { "foreign.idevento" => "self.idevento" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
 =head2 criadore
 
 Type: belongs_to
@@ -245,9 +215,39 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
+=head2 e_fois
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-02-01 20:37:41
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:+gXzU2tHGYGqxfT6zq6ofQ
+Type: has_many
+
+Related object: L<socialEvents::Schema::Result::EFoi>
+
+=cut
+
+__PACKAGE__->has_many(
+  "e_fois",
+  "socialEvents::Schema::Result::EFoi",
+  { "foreign.idevento" => "self.idevento" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+=head2 e_inscritoes
+
+Type: has_many
+
+Related object: L<socialEvents::Schema::Result::EInscrito>
+
+=cut
+
+__PACKAGE__->has_many(
+  "e_inscritoes",
+  "socialEvents::Schema::Result::EInscrito",
+  { "foreign.idevento" => "self.idevento" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-02-02 05:48:23
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:5qZ1SNH3vWL95dapccnPUA
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

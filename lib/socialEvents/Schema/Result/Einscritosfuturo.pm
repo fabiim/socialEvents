@@ -49,10 +49,11 @@ __PACKAGE__->add_columns(
   "usr",
   { data_type => "varchar2", is_nullable => 0, size => 100 },
 );
+__PACKAGE__->set_primary_key("idevento", "usr");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-02-01 20:37:41
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:TxcYC84wAusTaqdIiujzpQ
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-02-02 06:23:06
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:3ZNGCKPP4wReShOX/mLW+w
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

@@ -56,21 +56,6 @@ __PACKAGE__->set_primary_key("usr");
 
 =head1 RELATIONS
 
-=head2 tipoepref
-
-Type: belongs_to
-
-Related object: L<socialEvents::Schema::Result::Tipoe>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "tipoepref",
-  "socialEvents::Schema::Result::Tipoe",
-  { cod => "tipoepref" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
 =head2 usr
 
 Type: belongs_to
@@ -86,9 +71,24 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
+=head2 tipoepref
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-02-01 20:37:41
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:oL35YQ4C8a/8F/V6vzrEng
+Type: belongs_to
+
+Related object: L<socialEvents::Schema::Result::Tipoe>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "tipoepref",
+  "socialEvents::Schema::Result::Tipoe",
+  { cod => "tipoepref" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-02-02 05:48:23
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:nN5L6V5KtyKwmxGTg0Lukw
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

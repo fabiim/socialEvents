@@ -11,6 +11,7 @@
   <h1>Diffuse</h1>
   <div id="navbar">
     [% IF c.user_exists() %] 
+	  <a href="[% c.uri_for('/user/') %]">Home</a>
 	  <a href="[% c.uri_for('/user/perfil') %]">Perfil</a>
 	  <a href="[% c.uri_for('/eventos/') %]">Eventos</a>
 	  <a href="[% c.uri_for('/locais/') %]">Locais</a>

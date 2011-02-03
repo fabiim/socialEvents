@@ -63,10 +63,11 @@ __PACKAGE__->add_columns(
     size => 126,
   },
 );
+__PACKAGE__->set_primary_key("usr", "idevento");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-02-01 20:37:41
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:9I9z91TtlClwTR228rH9Qg
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-02-02 06:23:06
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:CJSKUeKnuqb/p9gucsLpEw
 
 __PACKAGE__->belongs_to(
   "idevento",
@@ -81,7 +82,6 @@ __PACKAGE__->belongs_to(
     { usr => "usr" },
     { is_deferrable => 1},
 );
-
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

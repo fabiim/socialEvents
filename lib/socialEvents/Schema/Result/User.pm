@@ -118,7 +118,6 @@ __PACKAGE__->add_columns(
   { data_type => "char", default_value => 1, is_nullable => 0, size => 1 },
 );
 __PACKAGE__->set_primary_key("usr");
-__PACKAGE__->add_unique_constraint("sys_c00113132", ["email"]);
 
 =head1 RELATIONS
 
@@ -182,6 +181,21 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+=head2 eventoes
+
+Type: has_many
+
+Related object: L<socialEvents::Schema::Result::Evento>
+
+=cut
+
+__PACKAGE__->has_many(
+  "eventoes",
+  "socialEvents::Schema::Result::Evento",
+  { "foreign.criadore" => "self.usr" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 =head2 e_fois
 
 Type: has_many
@@ -209,21 +223,6 @@ __PACKAGE__->has_many(
   "e_inscritoes",
   "socialEvents::Schema::Result::EInscrito",
   { "foreign.usr" => "self.usr" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-=head2 eventoes
-
-Type: has_many
-
-Related object: L<socialEvents::Schema::Result::Evento>
-
-=cut
-
-__PACKAGE__->has_many(
-  "eventoes",
-  "socialEvents::Schema::Result::Evento",
-  { "foreign.criadore" => "self.usr" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
@@ -273,9 +272,15 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-02-01 20:37:41
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:EEn4ZE654A/ZHsqPj6W68g
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2011-02-02 05:48:23
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:/AdYJZ9eAGefOnn1ZGwymw
 
+__PACKAGE__->remove_column('dn'); 
+__PACKAGE__->add_column('dn' => {
+    data_type   => "datetime",
+    is_nullable => 0,
+    original    => { data_type => "date" },
+			});
 
 # You can replace this text with custom content, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;

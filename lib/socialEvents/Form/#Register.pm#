@@ -11,7 +11,7 @@ has_field 'usr' => (
     required_message => 'Introduza o nome de utilizador', 
     minlength => 4 , ); 
 
-has_field 'nome'  => ( type => 'Text' , label => 'Nome', required =>1, required_message => 'Obrigatório',);
+has_field 'nome'  => ( type => 'Text' , label => 'Nome', required =>1, required_message => 'Obrigatório', );
 has_field 'morada' => ( type => 'Text', label => 'Morada', required =>1, required_message => 'Obrigatório',) ; 
 has_field 'cidade' => ( type => 'Text', label => 'Cidade', required =>1, required_message => 'Obrigatório',); 
 has_field 'codpais' => ( type => 'Select' , label => 'País',  ); 
