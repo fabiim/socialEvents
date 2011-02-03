@@ -72,16 +72,16 @@ sub view : Local : Args(1){
         );
     }
 } 
-
 sub do_list
 {
    my ( $self, $c ) = @_;
-   my $locais_criados =  [$c->model('DB::Locai')->search({ criadorl => $c->user->get('usr') })->all()];
-   my @colref = ('nomel', 'cap', 'publicol', 'm18'); 
-   my @colnames = ('Nome' , 'Capacidade' , 'Tipo' , 'Maior que 18'); 
-   $c->stash(locais_criados => $locais_criados , colref => \@colref, colnames => \@colnames );
+   my @locais_criados =  $c->model('DB::Locai')->search({ criadorl => $c->user->get('usr') })->all();
+   if (@locais_criados > 0){
+       my @colref = ('Nome', 'cap', 'publicol', 'm18'); 
+       my @colnames = ('Nome' , 'Capacidade' , 'Tipo' , 'Maior que 18', 'Cidade' ); 
+       $c->stash(locais_criados => \@locais_criados , colref => \@colref, colnames => \@colnames );
+   }
 }
-
 
 sub create: Local: Args(0){
     my ($self , $c ) = @_; 

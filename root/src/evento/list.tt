@@ -1,5 +1,5 @@
-<table id="locais" cellspacing="0" summary="Locais criados">
-<caption>Eventos criados por [% c.user.usr %]</caption>
+<table id="Eventos" cellspacing="0" summary="Eventos criados">
+<caption><h1><b>Eventos criados por [% c.user.usr %]</b></h1></caption>
   <tr>
     [% FOR column IN colnames %]
     <th scope="col">[% column %]</th>
@@ -9,13 +9,13 @@
   </tr>
   [% FOR local IN eventos_criados %]
 <tr [% IF (counter % 2) == 0 %] class="alt"[% END %]>
-  [% FOR column IN colref %]
-  <td>[% local.$column %]</td>
-  [% END %]
+  <td>[% local.nome %]</td>
+  <td>[% local.codtipoe.dsc %]</td>
+  <td>[% local.datai %]</td>
+  <td>[% local.idlocal.nomel %]</td>
   <td>
-    <a href="[% '/eventos/view/' _ local.idevento  %]">View</a>
+    <a href="[% '/eventos/view/' _ local.idevento  %]">Ver</a>
   </td>[% counter = counter + 1 %]
 </tr>[% END %]
 </table>
-
-
+<p> Para criar mais eventos utilize os <a href="[% '/locais' %]">locais</a> </p>

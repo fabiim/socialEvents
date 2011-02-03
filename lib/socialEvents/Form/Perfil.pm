@@ -37,7 +37,7 @@ sub options_sexo{
 sub validate{
     my $self = shift; 
     return unless ($self->field('pwd_nova')->value);
-    $self->field('pwd_nova_confirm')->add_erro('Passwords diferentes') if ($self->field('pwd_nova_confirm') ne  $self->field('pwd_nova'));
+    $self->field('pwd_nova_confirm')->add_error('Passwords diferentes') if ($self->field('pwd_nova_confirm')->value ne  $self->field('pwd_nova')->value);
 }
 
 sub options_codpais{

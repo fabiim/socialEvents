@@ -1,2 +1,5 @@
-Olha para ti no index
+[% IF eventos_criados %]
 [% PROCESS evento/list.tt %]
+[% ELSE %] 
+<h1> Voçê Ainda não criou eventos!</h1>
+[% END %]

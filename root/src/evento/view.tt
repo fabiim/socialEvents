@@ -4,8 +4,32 @@
 [% END %]
 <p>
 [% form.render %]</p>
-[% IF podeir == 1 and ! vai %] 
+[% IF (podeir == 1) and (! vai) %] 
 <p><a class="big" href="[% '/eventos/add_going/' _ evento.idevento  %]">Eu Vou! </a></p>
-[% ELSEIF (not foi) %]
-<p><a class="big" href="[% '/eventos/add_foi/' _ evento.idevento  %]">Eu Fui! </a></p>
 [% END %] 
+[% IF (podeir == 0) and (!foi) %]
+<p><a class="big" href="[% '/eventos/add_foi/' _ evento.idevento  %]">Eu Fui! </a></p>
+[% END %]
+
+[% IF foram %]
+<h1> <b> Foram : </b> </h1>
+<p>
+[% stop = 0 %]
+[% FOR thing IN foram %]
+[% IF stop == 6 %] <br /> [% END %]
+<a class="big" href="[% '/user/view/' _ thing.usr.usr %]"> [% thing.usr.usr %] </a> , 
+[% END %]
+</p>
+[% END %]
+
+[% IF vao %]
+<h1> <b> Vão: </b></h1>
+<p>
+[% stop = 0 %]
+[% FOR thing IN vao %]
+[% IF stop == 6 %] <br /> [% END %]
+<a class="big" href="[% '/user/view/' _ thing.usr.usr %]"> [% thing.usr.usr %] </a> , 
+[% END %]
+</p>
+[% END %]
+
