@@ -15,7 +15,8 @@
 	  <a href="[% c.uri_for('/user/perfil') %]">Perfil</a>
 	  <a href="[% c.uri_for('/eventos/') %]">Eventos</a>
 	  <a href="[% c.uri_for('/locais/') %]">Locais</a>
-    <a href="[% c.uri_for('/amigos') %]">Amigos</a>            
+	  <a href="[% c.uri_for('/amigos') %]">Amigos</a>            
+	  <a href="[% c.uri_for('/search/') %]">Pesquisa Avançada</a>
 	  <a href="[% c.uri_for('/user/logout') %]">Logout</a>	    
     [% ELSE %]
     <a href="[% c.uri_for('/user/login') %]">Login</a>
@@ -34,5 +35,9 @@
   [% IF error_message %] 
   <div class="error_message">[% error %]</div>
   [% END %]
+  [% TRY %]
   [% content %]
+  [% CATCH %] 
+  <p> Aconteceu um problema ao conectar à Base de Dados </p>
+  [% END %]
 </body>

@@ -1,20 +1,30 @@
-<table id="locais" cellspacing="0" summary="Locais criados">
-<caption>Eventos criados por [% c.user.usr %]</caption>
+<table id="resultados" cellspacing="0" summary="Resultados">
+<caption><h1><b> Resultados da pesquisa </b></h1></caption>
   <tr>
-    [% FOR column IN results.result_source.columns %]
-    <th scope="col">[% column %]</th>
-    [% END %]
-    <th scope="col"> Tipo Evento</th>
+    <th scope="col">Nome Evento</th>
+    <th scope="col">Tipo de Evento</th>
+    <th scope="col">Preço</th>
+    <th scope="col"> Data </th>
+    <th scope="col"> Local </th>    
+    <th scope="col"> Cidade </th>
+    <th scope="col"> País </th>
     <th/>
     [% counter = 0 %]
   </tr>
+  [% n = 0 %]
   [% WHILE  (coisa =  results.next)  %]
+  [% n = n+1 %]  
 <tr [% IF (counter % 2) == 0 %] class="alt"[% END %]>
-  [% FOR column IN results.result_source.columns %]
-  <td>[% coisa.$column %] </td>
-  [% END %]
-  <td>[% coisa.codtipoe.dsc %] </td> 
+  <td>[% coisa.nomee %] </td>
+  <td>[% coisa.codtipoe.dsc %] </td>
+  <td>[% coisa.precoe %] </td>
+  <td>[% coisa.datai %] </td>
+  <td>[% coisa.idlocal.nomel %] </td>
+  <td>[% coisa.codpais.descpais %] </td>
+  <td>
+    <a href="[% '/eventos/view/' _ coisa.idevento  %]">Ver</a>
+    </td>
   [% counter = counter + 1 %]
 </tr>[% END %]
 </table>
-
+<p> Um total de [% n %] resultados </p>

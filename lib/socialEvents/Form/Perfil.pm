@@ -21,8 +21,8 @@ has_field 'dn.month' => ( type => 'Month');
 has_field 'dn.day' => ( type => 'MonthDay'); 
 has_field 'sexo'   => ( type => 'Select' , label => 'Sexo', );
 has_field 'email' => ( type   => 'Email', label => 'Email',  required => 1, required_message => 'Introduza o email.', unique => 1, unique_message => 'Email existente.'  ,);
-has_field 'pwd_nova' => (type => 'Password', label => 'Pass Nova', minlength => 4); 
-has_field 'pwd_nova_confirm' => (type => 'PasswordConf', password_field => 'pwd_nova' , label => 'Confirm', required => 0); 
+has_field 'pwd' => (type => 'Password', label => 'Pass Nova', minlength => 4); 
+has_field 'pwd_confirm' => (type => 'PasswordConf', password_field => 'pwd' , label => 'Confirm', required => 0); 
 
 
 has_field 'submit' => ( type => 'Submit', value => 'Salvar Alterações' );
@@ -36,8 +36,8 @@ sub options_sexo{
 
 sub validate{
     my $self = shift; 
-    return unless ($self->field('pwd_nova')->value);
-    $self->field('pwd_nova_confirm')->add_error('Passwords diferentes') if ($self->field('pwd_nova_confirm')->value ne  $self->field('pwd_nova')->value);
+    return unless ($self->field('pwd')->value);
+    $self->field('pwd_confirm')->add_error('Passwords diferentes') if ($self->field('pwd_confirm')->value ne  $self->field('pwd')->value);
 }
 
 sub options_codpais{

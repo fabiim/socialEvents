@@ -21,6 +21,16 @@ sub search : Global {
     $input = '%' . $input . '%'; 
 
     my $rs = $c->model('DB::Evento');
+    
+    if (my $array = $self->search_form->field('order_by')->value){
+	if ($array == 1 ){
+	    $rs = $rs->search( {}, {order_by => { -asc => 'me.datai' }}); 
+	}
+	if ($array == 2 ){
+	    $rs = $rs->search( {},{ order_by => { -asc => 'me.precoe' }}); 
+	}
+    }
+
 
 #search nome ou descriçao
     my @options; 
@@ -122,11 +132,9 @@ my $dtf = $c->model('DB')->schema->storage->datetime_parser;
         }
     }
 
-    
+
     $c->stash->{results} = $rs; 
     $c->stash->{'template'} =  'search/debug.tt';         
-
-
 }
 
 

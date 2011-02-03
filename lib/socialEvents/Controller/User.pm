@@ -132,9 +132,9 @@ sub view : Local : Args(1){
         );
     }
     
-    my $is_amigo_from_me = $usr->amigos_usrs->find({usr => $usr_logado, amigo =>  $id_usr });
-    
-    $c->stash( is_amigo_from_me => $is_amigo_from_me); 
+    my $is_amigo = $c->model('DB::Amigo')->find({usr => $usr_logado , amigo => $id_usr}); 
+    if ($is_amigo){ $c->stash( is_amigo => $is_amigo); }
+	
 } 
 
 sub perfil:Local :Args(0){

@@ -8,7 +8,6 @@ use socialEvents::Form::EventoEdit;
 use socialEvents::Form::EventoView;
 
 has 'edit_form' => ( isa => 'socialEvents::Form::EventoEdit' , is => 'rw' , lazy => 1 , default => sub { socialEvents::Form::EventoEdit->new }) ; 
-
 has 'view_form' => ( isa => 'socialEvents::Form::EventoView' , is => 'rw' , lazy => 1 , default => sub { socialEvents::Form::EventoView->new }) ; 
 
 sub checkUser:Private {
@@ -41,7 +40,7 @@ sub add_going : Local : Args(1){
     if ($cmp < 0 ){
 	$evento->find_or_create({ idevento => $id_evento , usr => $c->user->get('usr')},{ key => 'primary' } );   
     }
-    $c->response->redirect( $c->uri_for('/eventos/view', $evento->idevento)); 
+    $c->response->redirect( $c->uri_for('/eventos/view', $id_evento)); 
 }
 
 sub add_foi : Local : Args(1){
@@ -62,7 +61,7 @@ sub add_foi : Local : Args(1){
 	$evento->find_or_create({ idevento => $id_evento , usr => $c->user->get('usr')},{ key => 'primary' } );   
     }
 
-    $c->response->redirect( $c->uri_for('/eventos/view', $evento->idevento)); 
+    $c->response->redirect( $c->uri_for('/eventos/view', $id_evento)); 
 }
 
 sub view : Local : Args(1){
@@ -104,11 +103,12 @@ sub view : Local : Args(1){
         return if !$self->edit_form->is_valid; 
 
         $c->flash->{message} = 'Alterações efectuadas'; 
-        $c->response->redirect( $c->uri_for('index')); 
+        $c->response->redirect( $c->uri_for('/eventos/')); 
         $c->detach();
 #edita o local
     }
     else{
+	
 	$self->do_listas_pessoas($c, $evento->idevento); 
         $c->stash( template => 'evento/view.tt',
                    form => $self->view_form,
@@ -183,7 +183,7 @@ sub create: Local: Args(1){
     return if !$self->edit_form->is_valid; 
 
     $c->flash->{message} = 'Evento Criado'; 
-    $c->response->redirect( $c->uri_for('index')); 
+    $c->response->redirect( $c->uri_for('/eventos')); 
 }
 
 __PACKAGE__->meta->make_immutable;

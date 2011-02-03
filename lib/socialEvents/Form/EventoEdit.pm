@@ -32,6 +32,14 @@ before 'update_model' => sub {
     $self->item->idlocal( $self->id_local); 
  };
 
+sub validate{
+    my $self = shift; 
+    return unless $self->schema; 
+    my $local = $self->schema->resultset('Locai')->find( $self->id_local) ; 
+# $self->field('pwd_nova_confirm')->add_error('Passwords diferentes') if ($self->field('pwd_nova_confirm')->value ne  $self->field('pwd_nova')->value);
+    if ($self->field('cape')->value > $local->capl ) { $self->field('cape')->add_error('O local não têm capacidade para tal'); } 
+}
+
 sub options_codtipoe{
     my $self = shift; 
     return unless $self->schema; 

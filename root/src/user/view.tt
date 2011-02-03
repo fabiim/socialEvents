@@ -1,4 +1,4 @@
 [% form.render %]
-[% IF !is_amigo_from_me %]
+[% IF !is_amigo %]
 <p><a class="big" href="[% '/amigos/add/' _ form.field('usr').value   %]">+ Adicionar Como Amigo</p>
 [% END %]

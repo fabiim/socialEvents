@@ -16,12 +16,20 @@ has_field 'nome'  => ( type => 'Text' , readonly =>1, label => 'Nome');
 has_field 'morada' => ( type => 'Text' , readonly =>1 , label => 'Morada'); 
 has_field 'cidade' => ( type => 'Text', readonly =>1 , label => 'Cidade'); 
 has_field 'codpais' => ( type => 'Select' , label => 'País' , readonly =>1 , label => 'País'); 
+has_field 'sexo'   => ( type => 'Select' , label => 'Sexo', readonly => 1);
 has_field 'dn' => (type => 'DateTime' , readonly =>1 , label =>'Data de Nascimento'); 
 has_field 'dn.year' => ( type => 'Year', readonly =>1, label => 'Ano');
 has_field 'dn.month' => ( type => 'Month', readonly =>1, label => 'Mês'); 
 has_field 'dn.day' => ( type => 'MonthDay', readonly =>1, label => 'Dia'); 
 has_field 'email' => ( type   => 'Email', , readonly =>1, label => 'Email');
 has_field 'login' => (type => 'Text', inactive =>1 , readonly =>1, 'Online'); 
+
+sub options_sexo{
+    return( 
+        1 => 'Masculino' , 
+        0 => 'Feminino' , 
+        ); 
+}
 
 sub options_codpais{
     my $self = shift; 

@@ -4,6 +4,7 @@
 [% END %]
 <p>
 [% form.render %]</p>
+<h2>Local de Evento: <a class="big" href="[% '/locais/view/' _ evento.idlocal.idlocal  %]"> [% evento.idlocal.nomel %]</a> </h2>
 [% IF (podeir == 1) and (! vai) %] 
 <p><a class="big" href="[% '/eventos/add_going/' _ evento.idevento  %]">Eu Vou! </a></p>
 [% END %] 

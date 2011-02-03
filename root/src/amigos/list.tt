@@ -8,7 +8,7 @@
   </tr>
   [% FOR local IN amigos %]
 <tr [% IF (counter % 2) == 0 %] class="alt"[% END %]>
-  <td>[% local.amigo %]</td>
+  <td>[% local.amigo.usr %]</td>
   <td>[% local.dataconv %]</td>
   <td>
     <a href="[% '/user/view/' _ local.amigo.usr  %]">View</a>   

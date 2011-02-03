@@ -9,7 +9,7 @@
   </tr>
   [% FOR local IN eventos_criados %]
 <tr [% IF (counter % 2) == 0 %] class="alt"[% END %]>
-  <td>[% local.nome %]</td>
+  <td>[% local.nomee %]</td>
   <td>[% local.codtipoe.dsc %]</td>
   <td>[% local.datai %]</td>
   <td>[% local.idlocal.nomel %]</td>
