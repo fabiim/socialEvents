@@ -7,9 +7,9 @@ __PACKAGE__->config(
     schema_class => 'socialEvents::Schema',
     
     connect_info => {
-        dsn => 'dbi:Oracle:sid=xe;host=192.168.1.138;port=1521',
+        dsn => 'dbi:Oracle:sid=xe;host=127.0.0.1;port=1521',
         user => 'fabiim',
-        password => 'pass',
+        password => 'fabiim',
         AutoCommit => q{1},
 	on_connect_call => 'datetime_setup',
     }
